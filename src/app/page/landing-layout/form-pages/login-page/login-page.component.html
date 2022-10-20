@@ -1,0 +1,41 @@
+<div class="form-page-layout">
+  <!-- Welcome -->
+  <oth-card [bodyTemplate]="bodyTemplate" [defaultHeaderClass]="'underline'" [header]="'Login'">
+    <!-- Body -->
+    <ng-template #bodyTemplate>
+      <div class="body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+          <div class="section">
+            <div [class.error-input]="submitted && form.controls.username.invalid" class="input-with-icon">
+              <input formControlName="username" i18n-placeholder="@@loginPage.usernameOrEmail.placeholder"
+                     placeholder="Username or Email..." required type="text">
+              <i aria-hidden="true" class="fas fa-user fa-lg fa-fw"></i>
+            </div>
+            <div [class.error-input]="submitted && form.controls.password.invalid" class="input-with-icon">
+              <input formControlName="password" i18n-placeholder="@@loginPage.password.placeholder"
+                     placeholder="Password..." required type="password">
+              <i aria-hidden="true" class="fas fa-lock fa-lg fa-fw"></i>
+            </div>
+            <div class="input-checkbox">
+              <label class="input-checkbox-label">
+                <input formControlName="rememberMe" type="checkbox">
+                <span></span>
+                <p i18n="@@loginPage.rememberMe">Remember Me</p>
+              </label>
+            </div>
+          </div>
+          <div class="section-submit">
+            <oth-button i18n-text="@@loginPage.loginButton" text="LOG IN"></oth-button>
+            <p>
+              <a [routerLink]="URLS.forgetPassword" class="theme-color-link" i18n="@@loginPage.forgetPassword">
+                Forget password?
+              </a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </oth-card>
+</div>
+<app-cookies></app-cookies>
+
